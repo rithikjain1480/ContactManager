@@ -1,0 +1,12 @@
+#{extends 'main.html' /}
+#{set title:'Log In' /}
+
+<h1>Log In</h1>
+
+<form action="@{Application.login()}" method="GET">
+	<p>Email: <input type="email" name="email"> </p>
+	<p>Password: <input type="password" name="pass"> </p>
+	<input type="submit" value="Login">
+</form>
+
+<p>Don't have an account? Click <a href="@{Application.signUp()}">here</a> to sign up.</p>

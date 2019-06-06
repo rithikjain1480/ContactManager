@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Contact List' /}
+
+<h1>Welcome! You are logged in!</h1>
+<h2>Email Address: ${email ?: 'Email Address'}</h2>
+
+<form action="@{Application.changeHours()}" method="GET">
+	<span>How long before a contact's birthday would you like to be reminded?</span>
+	<input type="number" name="hours" min="0">
+	<input type="hidden" name="email" value="${email}">
+	<input type="hidden" name="pass" value="${pass}">
+	<input type="submit" value="Enter">
+</form>
+
+<h2>Here is a list of your contacts</h2>
+
+<table style="width:100%">
+	#{list results, as:'row'}
+		<tr>
+		#{list row, as:'result'}
+			<td>${result}</td>
+		#{/list}
+	    </tr>
+	#{/list}
+</table>
+
+<p>Currently you have ${size} contact(s) in your list.</p>
+<br>
+
+<form action="@{Application.add()}" method="GET">
+	<input type="hidden" name="email" value="${email}">
+	<input type="hidden" name="pass" value="${pass}">
+	<input type="submit" value="Add More Contacts">
+</form>
+
+<br>
+<a href="@{Application.index()}">Log Out</a>

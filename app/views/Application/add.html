@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+#{set title:'Add Contacts' /}
+
+<h1>Add Contacts</h1>
+
+<script>
+      var datefield = document.createElement("input")
+      datefield.setAttribute("type", "date")
+      if (datefield.type != "date") { // if browser doesn't support input type="date", load files for jQuery UI Date Picker
+         document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+         document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+         document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
+      }
+</script>
+
+<script>
+    if (datefield.type != "date") { // if browser doesn't support input type="date", initialize date picker widget:
+       jQuery(function($) { // on document.ready
+           $('#bday').datepicker();
+       });
+    }
+</script>
+
+<form action="@{Application.addContact()}" method="GET">
+	<p>First Name: <input type="text" name="first"> </p>
+	<p>Last Name: <input type="text" name="last"> </p>
+	<p>Email: <input type="email" name="email"> </p>
+	<p>Phone Number: <input type="tel" name="phone"> </p>
+	<p>Birthday: <input type="date" id="bday" name="bday"> </p>
+	<input type="hidden" name="uEmail" value="${email}">
+	<input type="hidden" name="uPass" value="${pass}">
+	<input type="submit" value="Add Contact">
+</form>
+
+<br>
+
+<form action="@{Application.login()}" method="GET">
+	<input type="hidden" name="email" value="${email}">
+	<input type="hidden" name="pass" value="${pass}">
+	<input type="submit" value="Back/Cancel">
+</form>

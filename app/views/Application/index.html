@@ -1,0 +1,9 @@
+#{extends 'main.html' /}
+#{set title:'Contact Manager' /}
+
+<h1>Welcome to the Contact Manager</h1>
+
+<form action="@{Application.signUp()}" method="GET">
+	<input type="submit" value="Sign Up">
+	<input type="submit" formaction="@{Application.loginPage()}" value="Log In">
+</form>
